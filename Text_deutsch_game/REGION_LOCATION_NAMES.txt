@@ -1,0 +1,26 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[REGION_LOCATION_NAMES]
+Gondola Village
+Gondola Village
+Selago Village
+Selago Village
+Sundance Village
+Sundance Village
+Rosewood Village
+Rosewood Village
+Scarlet Village
+Scarlet Village
+Sambucha Settlement
+Sambucha Settlement
+Bismark Settlement
+Bismark Settlement
+Merlow Village
+Merlow Village
+Celtic Village
+Celtic Village
+(Anakiwa) Village
+(Anakiwa) Village
+Here
+Here

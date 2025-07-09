@@ -1,0 +1,8 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[REGION_LOCATION_DESCRIPTIONS]
+Tomb of the Spirits
+Tomb of the Spirits
+Prof. Nectar's Lab
+Prof. Nectar's Lab

@@ -1,0 +1,64 @@
+
+=================
+
+[2025-03-25 03:15:31 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `loadtransition=' for #<PokemonSystem>
+
+Backtrace:
+001_New_UI_Load.rb:20:in `pbStartScene'
+001_New_UI_Load.rb:169:in `pbStartLoadScreen'
+[Challenge Modes] 003_Start and End.rb:7:in `pbStartLoadScreen'
+999_Main.rb:6:in `main'
+999_Main.rb:41:in `mainFunctionDebug'
+999_Main.rb:18:in `block in mainFunction'
+003_Errors.rb:79:in `pbCriticalCode'
+999_Main.rb:18:in `mainFunction'
+999_Main.rb:51:in `block (2 levels) in load_scripts_from_folder'
+999_Main.rb:50:in `loop'
+
+=================
+
+[2025-03-25 03:17:59 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `loadtransition=' for #<PokemonSystem>
+
+Backtrace:
+001_New_UI_Load.rb:20:in `pbStartScene'
+001_New_UI_Load.rb:169:in `pbStartLoadScreen'
+[Challenge Modes] 003_Start and End.rb:7:in `pbStartLoadScreen'
+999_Main.rb:6:in `main'
+999_Main.rb:41:in `mainFunctionDebug'
+999_Main.rb:18:in `block in mainFunction'
+003_Errors.rb:79:in `pbCriticalCode'
+999_Main.rb:18:in `mainFunction'
+999_Main.rb:51:in `block (2 levels) in load_scripts_from_folder'
+999_Main.rb:50:in `loop'
+
+=================
+
+[2025-03-30 03:59:33 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [v21.1 Hotfixes]
+Exception: NameError
+Message: undefined method `pbCheckEventTriggerAfterTurning' for class `Game_Event'
+
+Backtrace:
+[v21.1 Hotfixes] Misc bug fixes.rb:558:in `<class:Game_Event>'
+[v21.1 Hotfixes] Misc bug fixes.rb:545:in `<main>'
+005_PluginManager.rb:635:in `eval'
+005_PluginManager.rb:635:in `block (2 levels) in runPlugins'
+005_PluginManager.rb:625:in `each'
+005_PluginManager.rb:625:in `block in runPlugins'
+005_PluginManager.rb:616:in `each'
+005_PluginManager.rb:616:in `runPlugins'
+999_Main.rb:34:in `mainFunctionDebug'
+999_Main.rb:18:in `block in mainFunction'
