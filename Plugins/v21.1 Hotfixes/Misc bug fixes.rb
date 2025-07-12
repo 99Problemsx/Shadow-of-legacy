@@ -558,7 +558,7 @@ class Game_Event < Game_Character
   alias __hotfixes__pbCheckEventTriggerAfterTurning pbCheckEventTriggerAfterTurning unless method_defined?(:__hotfixes__pbCheckEventTriggerAfterTurning)
   def pbCheckEventTriggerAfterTurning
     return if @map_id != $game_player.map_id
-	return __hotfixes__pbCheckEventTriggerAfterTurning
+    __hotfixes__pbCheckEventTriggerAfterTurning
   end
 
   def onEvent?

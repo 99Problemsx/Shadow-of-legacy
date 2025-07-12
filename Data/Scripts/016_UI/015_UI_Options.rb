@@ -15,6 +15,7 @@ class PokemonSystem
   attr_accessor :bgmvolume
   attr_accessor :sevolume
   attr_accessor :textinput
+  attr_accessor :loadtransition
 
   def initialize
     @textspeed     = 1     # Text speed (0=slow, 1=medium, 2=fast, 3=instant)
@@ -30,6 +31,7 @@ class PokemonSystem
     @bgmvolume     = 80    # Volume of background music and ME
     @sevolume      = 100   # Volume of sound effects
     @textinput     = 0     # Text input mode (0=cursor, 1=keyboard)
+    @loadtransition = 0    # Load transition setting (0=default)
   end
 end
 
