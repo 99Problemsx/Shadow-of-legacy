@@ -1,0 +1,130 @@
+===============================================================================
+Fri Jul 11 04:47:09 Mitteleuropäische Sommerzeit 2025
+-------------------------------------------------------------------------------
+Script 'Scene_Main' line 13: Errno::ENOENT occured.
+
+No such file or directory - Data/Animations.rxdata
+
+Backtrace:
+'Scene_Main' line 13 in `load_data'
+'Scene_Main' line 13 in `main_variable'
+'SDK_Scene_Base' line 39 in `main'
+'Main' line 12
+
+===============================================================================
+Fri Jul 11 04:47:19 Mitteleuropäische Sommerzeit 2025
+-------------------------------------------------------------------------------
+Collecting map data
+'Collecting map data' on frame 0
+'Collecting map data' on frame 1
+'Collecting map data' on frame 2
+'Collecting map data' on frame 3
+'Collecting map data' on frame 4
+'Collecting map data' on frame 5
+'Collecting map data' on frame 6
+'Collecting map data' on frame 7
+'Collecting map data' on frame 8
+'Collecting map data' on frame 9
+'Collecting map data' on frame 10
+'Collecting map data' on frame 11
+'Collecting map data' on frame 12
+'Collecting map data' on frame 13
+'Collecting map data' on frame 14
+'Collecting map data' on frame 15
+'Collecting map data' on frame 16
+'Collecting map data' on frame 17
+'Collecting map data' on frame 18
+'Collecting map data' on frame 19
+'Collecting map data' on frame 20
+'Collecting map data' on frame 21
+'Collecting map data' on frame 22
+'Collecting map data' on frame 23
+'Collecting map data' on frame 24
+'Collecting map data' on frame 25
+'Collecting map data' on frame 26
+'Collecting map data' on frame 27
+'Collecting map data' on frame 28
+'Collecting map data' on frame 29
+'Collecting map data' on frame 30
+'Collecting map data' on frame 31
+'Collecting map data' on frame 32
+Drawing preview
+'Drawing preview' on frame 0
+Saving "Lappet Town"
+'Saving "Lappet Town"' on frame 0
+'Saving "Lappet Town"' on frame 1
+'Saving "Lappet Town"' on frame 2
+'Saving "Lappet Town"' on frame 3
+'Saving "Lappet Town"' on frame 4
+'Saving "Lappet Town"' on frame 5
+'Saving "Lappet Town"' on frame 6
+'Saving "Lappet Town"' on frame 7
+'Saving "Lappet Town"' on frame 8
+'Saving "Lappet Town"' on frame 9
+'Saving "Lappet Town"' on frame 10
+'Saving "Lappet Town"' on frame 11
+'Saving "Lappet Town"' on frame 12
+'Saving "Lappet Town"' on frame 13
+'Saving "Lappet Town"' on frame 14
+'Saving "Lappet Town"' on frame 15
+'Saving "Lappet Town"' on frame 16
+'Saving "Lappet Town"' on frame 17
+'Saving "Lappet Town"' on frame 18
+'Saving "Lappet Town"' on frame 19
+'Saving "Lappet Town"' on frame 20
+'Saving "Lappet Town"' on frame 21
+'Saving "Lappet Town"' on frame 22
+'Saving "Lappet Town"' on frame 23
+'Saving "Lappet Town"' on frame 24
+'Saving "Lappet Town"' on frame 25
+'Saving "Lappet Town"' on frame 26
+'Saving "Lappet Town"' on frame 27
+'Saving "Lappet Town"' on frame 28
+'Saving "Lappet Town"' on frame 29
+'Saving "Lappet Town"' on frame 30
+'Saving "Lappet Town"' on frame 31
+'Saving "Lappet Town"' on frame 32
+'Saving "Lappet Town"' on frame 33
+'Saving "Lappet Town"' on frame 34
+'Saving "Lappet Town"' on frame 35
+'Saving "Lappet Town"' on frame 36
+'Saving "Lappet Town"' on frame 37
+'Saving "Lappet Town"' on frame 38
+'Saving "Lappet Town"' on frame 39
+'Saving "Lappet Town"' on frame 40
+'Saving "Lappet Town"' on frame 41
+'Saving "Lappet Town"' on frame 42
+'Saving "Lappet Town"' on frame 43
+'Saving "Lappet Town"' on frame 44
+'Saving "Lappet Town"' on frame 45
+'Saving "Lappet Town"' on frame 46
+'Saving "Lappet Town"' on frame 47
+'Saving "Lappet Town"' on frame 48
+'Saving "Lappet Town"' on frame 49
+'Saving "Lappet Town"' on frame 50
+'Saving "Lappet Town"' on frame 51
+'Saving "Lappet Town"' on frame 52
+'Saving "Lappet Town"' on frame 53
+'Saving "Lappet Town"' on frame 54
+'Saving "Lappet Town"' on frame 55
+'Saving "Lappet Town"' on frame 56
+'Saving "Lappet Town"' on frame 57
+'Saving "Lappet Town"' on frame 58
+'Saving "Lappet Town"' on frame 59
+'Saving "Lappet Town"' on frame 60
+'Saving "Lappet Town"' on frame 61
+'Saving "Lappet Town"' on frame 62
+'Saving "Lappet Town"' on frame 63
+'Saving "Lappet Town"' on frame 64
+'Saving "Lappet Town"' on frame 65
+'Saving "Lappet Town"' on frame 66
+'Saving "Lappet Town"' on frame 67
+'Saving "Lappet Town"' on frame 68
+'Saving "Lappet Town"' on frame 69
+'Saving "Lappet Town"' on frame 70
+'Saving "Lappet Town"' on frame 71
+'Saving "Lappet Town"' on frame 72
+'Saving "Lappet Town"' on frame 73
+'Saving "Lappet Town"' on frame 74
+'Saving "Lappet Town"' on frame 75
+'Saving "Lappet Town"' on frame 76

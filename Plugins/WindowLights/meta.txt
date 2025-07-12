@@ -1,0 +1,4 @@
+Name       = Window Lights
+Version    = 1.0
+Essentials = 21.1
+Credits    = Marcel Weidenauer 

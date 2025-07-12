@@ -77,7 +77,9 @@ class Spriteset_Map
           end
         rescue => e
           # Safety in case of errors with the sprite
-          console.log("Sun sprite error: #{e.message}")
+          Console.echo_warn("Sun sprite error: #{e.message}")
+          Console.echo_warn("Sun sprite will be disabled for this map.")
+          @hideSun = true
         end
       end
     else

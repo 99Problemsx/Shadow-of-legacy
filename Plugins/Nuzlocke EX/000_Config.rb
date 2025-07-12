@@ -12,6 +12,21 @@ module ChallengeModes
     [49, 50, 51]
   ]
 
+  # Available types for Monotype mode
+  MONOTYPE_TYPES = [
+    :NORMAL, :FIRE, :WATER, :ELECTRIC, :GRASS, :ICE, :FIGHTING, :POISON,
+    :GROUND, :FLYING, :PSYCHIC, :BUG, :ROCK, :GHOST, :DRAGON, :DARK, :STEEL, :FAIRY
+  ]
+
+  # Randomizer settings
+  RANDOMIZER_SETTINGS = {
+    :wild_pokemon => true,      # Randomize wild Pokemon encounters
+    :trainer_pokemon => true,   # Randomize trainer Pokemon
+    :starter_pokemon => true,   # Randomize starter Pokemon
+    :gift_pokemon => true,      # Randomize gift Pokemon
+    :legendary_separate => true, # Keep legendaries separate from regular Pokemon
+    :similar_strength => true   # Try to match Pokemon of similar strength levels
+  }
 
   # Name and Description for all the rules that can be toggled in the challenge
   RULES = {
@@ -40,25 +55,35 @@ module ChallengeModes
       :desc  => _INTL("Gifted Pokémon or eggs don't count as \"first encounters\" for the \"One Capture per Map\" rule."),
       :order => 5
     },
+    :MONOTYPE_MODE => {
+      :name  => _INTL("Monotype Challenge"),
+      :desc  => _INTL("You can only use Pokémon of a single type. Mixed-type Pokémon must have your chosen type as primary or secondary type."),
+      :order => 6
+    },
+    :RANDOMIZER_MODE => {
+      :name  => _INTL("Randomizer Mode"),
+      :desc  => _INTL("Wild Pokémon, trainer Pokémon, and gifts are randomized while maintaining game balance."),
+      :order => 7
+    },
     :FORCE_NICKNAME => {
       :name  => _INTL("Forced Nicknames"),
       :desc  => _INTL("Any Pokémon that is caught/obtained must be nicknamed."),
-      :order => 6
+      :order => 8
     },
     :FORCE_SET_BATTLES => {
       :name  => _INTL("Forced Set Battle Style"),
       :desc  => _INTL("The option to switch your Pokémon after fainting an opponent's Pokémon will not be shown."),
-      :order => 7
+      :order => 9
     },
     :NO_TRAINER_BATTLE_ITEMS => {
       :name  => _INTL("No Items in Trainer Battles"),
       :desc  => _INTL("Item usage will be disabled in Trainer Battles."),
-      :order => 8
+      :order => 10
     },
     :GAME_OVER_WHITEOUT => {
       :name  => _INTL("No White-out"),
       :desc  => _INTL("If all your party Pokémon faint in battle, you lose the challenge immediately."),
-      :order => 9
+      :order => 11
     }
   }
 end

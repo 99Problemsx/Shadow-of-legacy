@@ -234,9 +234,11 @@ class BoxRanch
       create_pokemon_event(pkmn, index, true)
     end
     
-    # Update sprites
-    $scene.disposeSpritesets
-    $scene.createSpritesets
+    # Update sprites - only if we're in the map scene
+    if $scene.is_a?(Scene_Map)
+      $scene.disposeSpritesets
+      $scene.createSpritesets
+    end
   end
 
   def create_pokemon_event(pkmn, index, in_water = false)
@@ -415,9 +417,11 @@ class BoxRanch
     
     @pokemon_events.clear
     
-    # Update sprites
-    $scene.disposeSpritesets
-    $scene.createSpritesets
+    # Update sprites - only if we're in the map scene
+    if $scene.is_a?(Scene_Map)
+      $scene.disposeSpritesets
+      $scene.createSpritesets
+    end
   end
 
   def update
@@ -459,4 +463,116 @@ class BoxRanch
     shiny = pkmn.shiny?
     
     # Try to get the correct sprite considering water/levitates
-    sprite_path = box_ranch_sprite_filename(pkmn.species, form, gender
+    sprite_path = box_ranch_sprite_filename(pkmn.species, form, gender, shiny, in_water, levitates)
+    sprite_name = sprite_path.gsub("Graphics/Characters/", "")
+    
+    # Create event
+    event = RPG::Event.new(x, y)
+    event.id = $game_map.events.keys.max + 1 rescue 1
+    
+    # Set event name
+    if in_water
+      event.name = "InWater_Pokemon_#{pkmn.species}"
+    else
+      event.name = "Pokemon_#{pkmn.species}"
+    end
+    
+    # Set graphic
+    event.pages[0].graphic.character_name = sprite_name
+    event.pages[0].graphic.character_hue = 0
+    event.pages[0].graphic.direction = 2
+    
+    # Settings
+    event.pages[0].through = false
+    event.pages[0].always_on_top = false
+    event.pages[0].step_anime = true
+    event.pages[0].trigger = 0
+    event.pages[0].move_type = 1
+    
+    # Calculate nature-dependent speed and frequency
+    nature_value = pkmn.nature.id.to_s.hash.abs
+    
+    if in_water
+      event.pages[0].move_speed = 2 + (nature_value % 3)
+    else
+      event.pages[0].move_speed = 2 + (nature_value % 5)
+    end
+    
+    event.pages[0].move_frequency = 2 + (nature_value % 3)
+    
+    # Movement settings
+    event.pages[0].move_route = RPG::MoveRoute.new
+    event.pages[0].move_route.repeat = true
+    event.pages[0].move_route.skippable = false
+    event.pages[0].move_route.list = []
+    
+    # Event commands
+    event.pages[0].list = []
+    
+    # Add commands
+    Compiler::push_script(event.pages[0].list, "play_pokemon_cry(:#{pkmn.species}, 100)")
+    Compiler::push_script(event.pages[0].list, "pbMessage(\"#{pkmn.name} looks at you friendly!\")")
+    
+    if pkmn.shiny?
+      Compiler::push_script(event.pages[0].list, "pbMessage(\"#{pkmn.name} shines brightly in the sunlight.\")")
+    end
+    
+    nature_text = get_nature_text(pkmn.nature)
+    Compiler::push_script(event.pages[0].list, "pbMessage(\"#{nature_text}\")")
+    
+    if in_water
+      Compiler::push_script(event.pages[0].list, "pbMessage(\"It swims happily in the water!\")")
+    elsif levitates
+      Compiler::push_script(event.pages[0].list, "pbMessage(\"It floats elegantly in the air!\")")
+    end
+    
+    Compiler::push_script(event.pages[0].list, "pbMessage(\"Level: #{pkmn.level}\\nAbility: #{pkmn.ability.name}\")")
+    Compiler::push_script(event.pages[0].list, "show_pokemon_interaction_menu(:#{pkmn.species}, #{pkmn.level}, #{event.id})")
+    
+    Compiler::push_end(event.pages[0].list)
+    
+    # Add event to map
+    game_event = Game_Event.new($game_map.map_id, event)
+    game_event.moveto(x, y)
+    game_event.refresh
+    
+    $game_map.events[event.id] = game_event
+    @pokemon_events[event.id] = pkmn
+    
+    return game_event
+  end
+end
+
+# Global instance
+$box_ranch = BoxRanch.new
+
+# Event handlers
+EventHandlers.add(:on_enter_map, :box_ranch_setup, proc { |old_map_id|
+  $box_ranch.setup if $box_ranch
+})
+
+# Interaction menu function
+def show_pokemon_interaction_menu(species, level, event_id)
+  commands = [
+    _INTL("Pet"),
+    _INTL("Play"),
+    _INTL("Feed"),
+    _INTL("Back")
+  ]
+  
+  choice = pbMessage(_INTL("What would you like to do?"), commands, -1)
+  
+  case choice
+  when 0  # Pet
+    pbMessage(_INTL("You pet the Pokémon gently. It seems happy!"))
+    # Add happiness or other effects here
+  when 1  # Play
+    pbMessage(_INTL("You play with the Pokémon. It's having fun!"))
+    # Add play effects here
+  when 2  # Feed
+    pbMessage(_INTL("You give the Pokémon some food. It's grateful!"))
+    # Add feeding effects here
+  when 3  # Back
+    # Do nothing, just return
+  end
+end

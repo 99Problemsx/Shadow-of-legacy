@@ -8,7 +8,7 @@ class Battle::Scene
   alias __challenge__pbFaintBattler pbFaintBattler unless method_defined?(:__challenge__pbFaintBattler)
   def pbFaintBattler(*args)
     return __challenge__pbFaintBattler(*args) if !ChallengeModes.on? || ChallengeModes.had_first_encounter? || @first_fainted
-    ChallengeModes.set_first_encounter(args[0]) if !@battle.trainerBattle?
+    ChallengeModes.set_first_encounter(args[0].pokemon) if !@battle.trainerBattle?
     @first_fainted = true
     return __challenge__pbFaintBattler(*args)
   end
@@ -26,7 +26,7 @@ class Battle::Scene
       battler = b
       break
     end
-    ChallengeModes.set_first_encounter(battler) if battler
+    ChallengeModes.set_first_encounter(battler.pokemon) if battler
     return ret
   end
 end
@@ -48,10 +48,12 @@ class Battle
     caught   = @caughtPokemon.length
     owned_b4 = false
     old_ball = @first_poke_ball
-    battler.pokemon.species_data.get_family_species.each { |pk| owned_b4 = true if $player.owned?(pk) }
+    # Store pokemon data before the ball throw, as it might become nil after catching
+    target_pokemon = battler.pokemon
+    target_pokemon.species_data.get_family_species.each { |pk| owned_b4 = true if $player.owned?(pk) }
     ret      = __challenge__pbThrowPokeBall(*args)
-    # Flag for caught Pokemon for map
-    ChallengeModes.set_first_encounter(battler, owned_b4) if [1, 4].include?(@decision) || @caughtPokemon.length != caught || @first_poke_ball != old_ball
+    # Flag for caught Pokemon for map (only when actually caught, not when it breaks out)
+    ChallengeModes.set_first_encounter(target_pokemon, owned_b4) if @decision == 4 && @caughtPokemon.length != caught
     return ret
   end
 end
@@ -93,12 +95,21 @@ ItemHandlers::CanUseInBattle.addIf(:poke_balls,
     end
     target = battler.opposes? ? battler : battler.pbDirectOpposing(true)
     target = target.allAllies.first if target.fainted?
-    # Disable Pokeball throwing if already caught)
-    if ChallengeModes.had_first_encounter?(target)
+    # Disable Pokeball throwing if already caught
+    if ChallengeModes.had_first_encounter?(target.pokemon)
       if showMessages
         rule_name = _INTL(ChallengeModes::RULES[:ONE_CAPTURE][:name])
         pbSEStop
         pbMessage(_INTL("The \"{1}\" rule prevents you from catching a Pokémon on a map you already had an encounter on!", rule_name))
+      end
+      next false
+    end
+    # Disable Pokeball throwing for invalid Monotype Pokemon
+    if ChallengeModes.on?(:MONOTYPE_MODE) && !ChallengeModes.valid_monotype_pokemon?(target.pokemon)
+      if showMessages
+        type_name = GameData::Type.get($PokemonGlobal.challenge_monotype_type).name
+        pbSEStop
+        pbMessage(_INTL("The Monotype challenge prevents you from catching {1}! You can only use {2}-type Pokémon.", target.pokemon.species_data.name, type_name))
       end
       next false
     end

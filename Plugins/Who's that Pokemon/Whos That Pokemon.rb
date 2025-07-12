@@ -76,6 +76,9 @@ def choosePokemon
     return
   end
 
+  retry_count = 0
+  max_retries = 10
+
   loop do  # Keep looping if player wants to continue
     chosenPokemon = list.sample  # Ensure a valid Pokémon is chosen
 
@@ -84,9 +87,19 @@ def choosePokemon
     # Displays Pokémon as a silhouette
     @sprites["icon"].setSpeciesBitmap(chosenPokemon, 0, 0, false)
     if @sprites["icon"].bitmap.nil?
-      pbMessage(_INTL("Error loading Pokémon sprite."))
+      retry_count += 1
+      if retry_count >= max_retries
+        pbMessage(_INTL("Error loading Pokémon sprites. Game will exit."))
+        pbEndScene
+        return
+      end
+      Console.echo_warn("Failed to load sprite for #{chosenPokemon}. Retrying...")
       next  # Retry with another Pokémon
     end
+    
+    # Reset retry count on successful sprite load
+    retry_count = 0
+
     @sprites["icon"].tone = Tone.new(-255, -255, -255, 255)
     @sprites["icon"].visible = true
 

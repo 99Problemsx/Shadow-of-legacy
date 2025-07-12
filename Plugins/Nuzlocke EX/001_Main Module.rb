@@ -1,6 +1,16 @@
 #-------------------------------------------------------------------------------
 # Main Module for handling challenge data
 #-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Extend PokemonGlobalMetadata to include new challenge variables
+#-------------------------------------------------------------------------------
+class PokemonGlobalMetadata
+  attr_accessor :challenge_monotype_type
+  attr_accessor :challenge_randomizer_seed
+  attr_accessor :challenge_randomizer_map
+end
+
 module ChallengeModes
   @@started = false
 
@@ -43,6 +53,21 @@ module ChallengeModes
     $PokemonGlobal.challenge_qued         = false
     $PokemonSystem.battlestyle            = 1 if $PokemonGlobal.challenge_rules.include?(:FORCE_SET_BATTLES)
     $PokemonSystem.givenicknames          = 0 if $PokemonGlobal.challenge_rules.include?(:FORCE_NICKNAME)
+    
+    # Initialize challenge variables if they don't exist
+    $PokemonGlobal.challenge_monotype_type = nil if !$PokemonGlobal.challenge_monotype_type
+    $PokemonGlobal.challenge_randomizer_seed = nil if !$PokemonGlobal.challenge_randomizer_seed
+    $PokemonGlobal.challenge_randomizer_map = nil if !$PokemonGlobal.challenge_randomizer_map
+    
+    # Initialize Monotype mode
+    if $PokemonGlobal.challenge_rules.include?(:MONOTYPE_MODE)
+      select_monotype_type if !$PokemonGlobal.challenge_monotype_type
+    end
+    
+    # Initialize Randomizer mode
+    if $PokemonGlobal.challenge_rules.include?(:RANDOMIZER_MODE)
+      initialize_randomizer if !$PokemonGlobal.challenge_randomizer_seed
+    end
   end
   #-----------------------------------------------------------------------------
   # Clear all challenge data and stop the challenge
@@ -128,9 +153,93 @@ module ChallengeModes
     return true if $PokemonGlobal.challenge_encs[map_id]
     ChallengeModes::SPLIT_MAPS_FOR_ENCOUNTERS.each do |map_grp|
       next if !map_grp.include?(map_id)
-      return true if $PokemonGlobal.challenge_encs[m]
+      map_grp.each { |m| return true if $PokemonGlobal.challenge_encs[m] }
     end
     return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Monotype mode methods
+  #-----------------------------------------------------------------------------
+  def select_monotype_type
+    type_names = []
+    MONOTYPE_TYPES.each { |type| type_names.push(GameData::Type.get(type).name) }
+    type_names.push(_INTL("Cancel"))
+    
+    selected = pbMessage(_INTL("Choose your Monotype:"), type_names)
+    if selected >= 0 && selected < MONOTYPE_TYPES.length
+      $PokemonGlobal.challenge_monotype_type = MONOTYPE_TYPES[selected]
+      type_name = GameData::Type.get($PokemonGlobal.challenge_monotype_type).name
+      pbMessage(_INTL("You have chosen {1}-type Pokémon for your Monotype challenge!", type_name))
+    else
+      return false
+    end
+    return true
+  end
+  
+  def valid_monotype_pokemon?(pokemon)
+    return true if !on?(:MONOTYPE_MODE)
+    return false if !$PokemonGlobal.challenge_monotype_type
+    
+    chosen_type = $PokemonGlobal.challenge_monotype_type
+    species_data = pokemon.is_a?(Pokemon) ? pokemon.species_data : GameData::Species.get(pokemon)
+    
+    return species_data.types.include?(chosen_type)
+  end
+  
+  #-----------------------------------------------------------------------------
+  # Randomizer mode methods  
+  #-----------------------------------------------------------------------------
+  def initialize_randomizer
+    # Create a seed based on current time and trainer ID
+    seed = Time.now.to_i + $player.id
+    $PokemonGlobal.challenge_randomizer_seed = seed
+    $PokemonGlobal.challenge_randomizer_map = {}
+    # Randomizer silently initialized (no message to avoid cluttering the game)
+  end
+  
+  def get_randomized_species(original_species, is_legendary = false, level = 1)
+    return original_species if !on?(:RANDOMIZER_MODE)
+    
+    # Use the original species as part of the key for consistent randomization
+    key = original_species.to_s + (is_legendary ? "_legendary" : "_normal")
+    
+    # If we already randomized this species, return the same result
+    if $PokemonGlobal.challenge_randomizer_map[key]
+      return $PokemonGlobal.challenge_randomizer_map[key]
+    end
+    
+    # Get list of possible Pokemon
+    possible_species = []
+    GameData::Species.each do |species|
+      next if species.form != 0  # Only base forms
+      next if species.mega_stone || species.mega_move  # No mega evolutions
+      
+      # Separate legendaries if setting is enabled
+      species_is_legendary = species.has_flag?("Legendary") || species.has_flag?("Mythical")
+      if RANDOMIZER_SETTINGS[:legendary_separate]
+        next if is_legendary != species_is_legendary
+      end
+      
+      # Try to match similar strength levels
+      if RANDOMIZER_SETTINGS[:similar_strength] && level > 1
+        species_bst = species.base_stats.values.sum
+        original_bst = GameData::Species.get(original_species).base_stats.values.sum
+        next if (species_bst - original_bst).abs > 100  # BST difference threshold
+      end
+      
+      possible_species.push(species.species)
+    end
+    
+    # Select random species using seeded randomization
+    srand($PokemonGlobal.challenge_randomizer_seed + original_species.to_s.hash)
+    randomized_species = possible_species.sample
+    srand()  # Reset random seed
+    
+    # Store the mapping for consistency
+    $PokemonGlobal.challenge_randomizer_map[key] = randomized_species
+    
+    return randomized_species
   end
 
   #-----------------------------------------------------------------------------

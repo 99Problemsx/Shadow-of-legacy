@@ -46,3 +46,112 @@ Body2 = But, you know what? I still haven't caught \TE.\mIt's getting beyond fru
 BattleRequest = Would you be my practice partner again sometime?\mI'll be waiting on \TM...\mCould you take it a little easier on me next time?
 BattleRemind = How soon can I expect to see you?\mDon't forget, \TM!
 End = Bye! Let's chat again!
+#-------------------------------
+[FISHERMAN,Klaus]
+Intro = Hallo, \PN! Hier ist \TN.
+Intro = \PN! Hier ist \TN. Wie geht's?
+IntroMorning = Guten Morgen, \PN! Hier ist \TN. Schon früh auf den Beinen?
+IntroAfternoon = Guten Tag, \PN! Hier ist \TN. Perfektes Angelwetter heute!
+IntroEvening = Guten Abend, \PN! Hier ist \TN. Die Fische beißen abends am besten!
+Body1 = Ich war heute wieder angeln. Mein \TP hilft mir dabei!
+Body1 = Hast du schon mal probiert, bei Regen zu angeln? Es ist fantastisch!
+Body1 = Mein \TP und ich haben heute einen riesigen Fisch gesehen!
+Body2 = Ich habe gehört, dass es bei \TM seltene Wasserpokémon gibt.
+Body2 = Neulich habe ich ein \TE am Haken gehabt, aber es ist entkommen!
+Body2 = Weißt du, wo man die besten Köder kaufen kann?
+BattleRequest = Wie wäre es mit einem Kampf am Wasser?\mIch warte bei \TM mit meinen Wasserpokémon!
+BattleRemind = Vergiss unseren Kampf nicht!\mIch bin immer noch bei \TM!
+End = Petri Heil und bis bald!
+End = Möge dein Pokédex voller werden!
+#-------------------------------
+[YOUNGSTER,Tim]
+Intro = Hey \PN! Hier ist \TN!
+Intro = \PN! Rate mal, wer hier ist? \TN!
+IntroMorning = Morgen, \PN! \TN hier. Bist du schon wach?
+IntroAfternoon = Hi \PN! \TN hier. Schöner Tag heute!
+IntroEvening = Abend, \PN! \TN hier. Noch wach?
+Body1 = Mein \TP wird immer stärker! Es hört richtig gut auf mich.
+Body1 = Ich trainiere jeden Tag mit meinem \TP!
+Body1 = Mein \TP hat eine neue Attacke gelernt!
+Body2 = Ich habe heute ein cooles \TE gesehen!
+Body2 = Bei \TM gibt es angeblich seltene Pokémon!
+Body2 = Meine Schwester sagt, ich soll mehr trainieren...
+BattleRequest = Lust auf einen Kampf?\mIch zeige dir, wie stark mein \TP geworden ist!\mTreff mich bei \TM!
+BattleRemind = Wo bleibst du denn?\mIch warte immer noch bei \TM!
+End = Bis dann! Training ruft!
+End = Ciao! Wir sehen uns!
+#-------------------------------
+[LASS,Maria]
+Intro = Hallo \PN! Hier ist \TN.
+Intro = Hi \PN! \TN hier. Wie geht's dir?
+IntroMorning = Guten Morgen, \PN! \TN hier. Schön, dass du da bist!
+IntroAfternoon = Hallo \PN! \TN hier. Schöner Tag, nicht wahr?
+IntroEvening = Guten Abend, \PN! \TN hier. Hattest du einen schönen Tag?
+Body1 = Mein \TP ist so süß! Ich liebe es über alles.
+Body1 = Ich habe meinem \TP heute eine neue Schleife gekauft!
+Body1 = Mein \TP und ich waren heute im Pokémon-Center.
+Body2 = Ich habe gehört, dass es bei \TM niedliche Pokémon gibt!
+Body2 = Neulich habe ich ein \TE gesehen, aber es war zu schüchtern!
+Body2 = Meine Freundin hat mir einen Tipp über seltene Pokémon gegeben.
+BattleRequest = Magst du einen freundlichen Kampf?\mIch möchte dir mein \TP zeigen!\mKomm zu \TM!
+BattleRemind = Ich warte immer noch auf dich!\mVergiss nicht: \TM!
+End = Bis bald! Pass auf dich auf!
+End = Tschüss! Grüß deine Pokémon von mir!
+#-------------------------------
+[HIKER,Bruno]
+Intro = \PN! Hier ist \TN. Wie läuft's?
+Intro = Hey \PN! \TN hier. Alles klar?
+IntroMorning = Morgen, \PN! \TN hier. Früh unterwegs heute?
+IntroAfternoon = Tag, \PN! \TN hier. Perfektes Wanderwetter!
+IntroEvening = Abend, \PN! \TN hier. Müde von der Wanderung?
+Body1 = Mein \TP und ich haben heute eine tolle Wanderung gemacht!
+Body1 = Die Berge sind so schön! Mein \TP liebt es hier.
+Body1 = Ich habe meinem \TP beigebracht, schwere Steine zu bewegen!
+Body2 = In den Bergen bei \TM gibt es starke Gestein-Pokémon!
+Body2 = Ich habe neulich ein \TE in einer Höhle gesehen!
+Body2 = Kennst du gute Wanderwege mit wilden Pokémon?
+BattleRequest = Lust auf einen harten Kampf?\mMeine Gestein-Pokémon sind bereit!\mTreff mich bei \TM!
+BattleRemind = Wo bleibst du?\mIch warte bei \TM mit meinen starken Pokémon!
+End = Bis dann! Bleib stark!
+End = Ciao! Die Berge rufen!
+#-------------------------------
+[BEAUTY,Lisa]
+Intro = Hallo Schätzchen! Hier ist \TN.
+Intro = \PN, Liebling! \TN hier.
+IntroMorning = Guten Morgen, \PN! \TN hier. Du siehst heute gut aus!
+IntroAfternoon = Hallo \PN! \TN hier. Wunderschöner Tag!
+IntroEvening = Guten Abend, \PN! \TN hier. Du strahlst heute!
+Body1 = Mein \TP ist das schönste Pokémon der Welt!
+Body1 = Ich habe mein \TP heute zum Pokémon-Salon gebracht!
+Body1 = Mein \TP und ich üben für Pokémon-Wettbewerbe!
+Body2 = Bei \TM gibt es angeblich wunderschöne Pokémon!
+Body2 = Ich suche nach einem \TE für meine Sammlung!
+Body2 = Kennst du einen guten Ort für Pokémon-Fotoshootings?
+BattleRequest = Möchtest du die Schönheit meiner Pokémon sehen?\mKomm zu \TM für einen eleganten Kampf!
+BattleRemind = Ich warte immer noch auf dich, Schätzchen!\mVergiss nicht: \TM!
+End = Bis bald, Liebling!
+End = Ciao! Bleib schön!
+#-------------------------------
+[YOUNGSTER,Joey]
+Intro = Hey \PN! Hier ist Joey!
+Intro = \PN! Joey hier! Rate mal, was mein Rattfraz heute gemacht hat!
+Intro = Hi \PN! Hier ist Joey. Du wirst nicht glauben, was passiert ist!
+IntroMorning = Guten Morgen \PN! Joey hier. Mein Rattfraz ist schon früh wach!
+IntroAfternoon = Hi \PN! Joey hier. Mein Rattfraz trainiert den ganzen Tag!
+IntroEvening = Abend \PN! Joey hier. Mein Rattfraz ist immer noch voller Energie!
+Body1 = Mein Rattfraz ist das beste Rattfraz der Welt!
+Body1 = Ich liebe mein Rattfraz so sehr! Es ist so stark und schnell!
+Body1 = Mein Rattfraz hat heute eine neue Attacke gelernt!
+Body1 = Weißt du, mein Rattfraz ist wirklich etwas Besonderes!
+Body1 = Mein Rattfraz und ich sind ein unschlagbares Team!
+Body2 = Mein Rattfraz ist in der Top-Prozent aller Rattfraz!
+Body2 = Andere Trainer sind immer neidisch auf mein Rattfraz!
+Body2 = Mein Rattfraz kann jedes andere Rattfraz besiegen!
+Body2 = Ich habe mein Rattfraz seit es ein kleines Rattfratz war!
+Body2 = Mein Rattfraz versteht mich besser als jeder andere!
+BattleRequest = Willst du gegen mein super starkes Rattfraz kämpfen?\mEs ist wirklich das beste! Komm zu \TM!
+BattleRequest = Mein Rattfraz möchte dir seine Stärke zeigen!\mTreff mich bei \TM für den Kampf deines Lebens!
+BattleRemind = Wo bleibst du? Mein Rattfraz wartet ungeduldig!\mKomm schnell zu \TM!
+BattleRemind = Mein Rattfraz fragt dauernd, wann du kommst!\mVergiss nicht: \TM!
+End = Bis bald! Grüß dein Team von meinem Rattfraz!
+End = Ciao! Mein Rattfraz und ich müssen weiter trainieren!

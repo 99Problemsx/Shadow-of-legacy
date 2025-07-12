@@ -1,0 +1,4 @@
+Name       = Gen2 Phone System
+Version    = 1.0
+Essentials = 21.1
+Credits    = NoNonever

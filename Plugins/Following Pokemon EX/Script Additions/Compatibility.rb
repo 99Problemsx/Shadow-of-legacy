@@ -4,8 +4,13 @@
 if PluginManager.installed?("Elite Battle: DX")
   module EliteBattle
     def self.follower(battle)
-      return nil if !EliteBattle::USE_FOLLOWER_EXCEPTION
+      # Better error handling for compatibility
+      return nil if !defined?(EliteBattle::USE_FOLLOWER_EXCEPTION) || !EliteBattle::USE_FOLLOWER_EXCEPTION
+      return nil if !defined?(FollowingPkmn) || !FollowingPkmn.respond_to?(:active?)
       return (FollowingPkmn.active? && battle.scene.firstsendout) ? 0 : nil
+    rescue => e
+      Console.echo_warn("EliteBattle compatibility error: #{e.message}")
+      return nil
     end
   end
 end

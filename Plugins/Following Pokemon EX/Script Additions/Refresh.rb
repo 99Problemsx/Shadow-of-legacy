@@ -205,17 +205,24 @@ class Scene_Map
     end
   end
   #-----------------------------------------------------------------------------
-  # Forcefully set the Following Pokemon direction when the player transfers to
-  # a new area
+  # Improved transfer_player method with smooth following
   #-----------------------------------------------------------------------------
   alias __followingpkmn__transfer_player transfer_player unless method_defined?(:__followingpkmn__transfer_player)
   def transfer_player(*args)
     __followingpkmn__transfer_player(*args)
+    
+    # Simple refresh without forced positioning
     leader = $game_player
     FollowingPkmn.refresh(false)
+    
+    # Just set direction, let the normal following logic handle positioning
     $game_temp.followers.each_follower do |event, follower|
+      next if !event
+      
+      # Only set direction, don't force position
       pbTurnTowardEvent(event, leader)
       follower.direction = event.direction
+      
       leader = event
     end
   end

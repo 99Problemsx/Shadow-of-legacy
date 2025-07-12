@@ -31,11 +31,15 @@ if Essentials::VERSION.include?("21")
       makeMapArrows
       mapMetadata = $game_map.metadata
       if !mapMetadata
-        p "There's no mapMetadata for map '#{$game_map.name}' with ID #{$game_map.map_id}. Add it to the map_metadata.txt to fix this error!"
-        Console.echo_error _INTL("There's no mapMetadata for map '#{$game_map.name}' with ID #{$game_map.map_id}. \nAdd it to the map_metadata.txt to fix this error!")
+        # Improved error handling - don't crash, just use default values
+        Console.echo_warn _INTL("No mapMetadata found for map '#{$game_map.name}' (ID: #{$game_map.map_id}). Using default position.")
+        # Create default metadata to prevent crashes
+        playerPos = [0, 0, 0]
+        mapSize = nil
+      else
+        playerPos = mapMetadata.town_map_position || [0, 0, 0]
+        mapSize = mapMetadata.town_map_size
       end
-      playerPos = mapMetadata && mapMetadata.town_map_position ? mapMetadata.town_map_position : [0, 0, 0]
-      mapSize = mapMetadata.town_map_size
       mapX = playerPos[1]
       mapY = playerPos[2]
       if mapSize && mapSize[0] && mapSize[0].ceil

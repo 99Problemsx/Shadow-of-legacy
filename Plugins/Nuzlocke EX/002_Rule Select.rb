@@ -66,6 +66,7 @@ module ChallengeModes
   def select_custom_rules
     selected_rules = []
     catch_clauses  = [:SHINY_CLAUSE, :DUPS_CLAUSE, :GIFT_CLAUSE]
+    special_modes  = [:MONOTYPE_MODE, :RANDOMIZER_MODE]
     vp = Viewport.new(0, 0, Graphics.width, Graphics.height)
     infowindow = Window_AdvancedTextPokemon.newWithSize("", 0, Graphics.height - 96, Graphics.width, 96, vp)
     infowindow.setSkin(MessageConfig.pbGetSystemFrame)
@@ -129,9 +130,10 @@ module ChallengeModes
           updated = true
         elsif (selected_rules.include?(:ONE_CAPTURE) && catch_clauses.include?(rule)) || 
               (selected_rules.include?(:PERMAFAINT) && rule == :GAME_OVER_WHITEOUT) ||
-              !(catch_clauses + [:GAME_OVER_WHITEOUT]).include?(rule)
+              !(catch_clauses + [:GAME_OVER_WHITEOUT] + special_modes).include?(rule) ||
+              special_modes.include?(rule)
           selected_rules.push(rule)
-          selected_rules.push(:GAME_OVER_WHITEOUT) if !selected_rules.include?(:PERMAFAINT) && !selected_rules.include?(:GAME_OVER_WHITEOUT)
+          selected_rules.push(:GAME_OVER_WHITEOUT) if !selected_rules.include?(:PERMAFAINT) && !selected_rules.include?(:GAME_OVER_WHITEOUT) && !special_modes.include?(rule)
           updated = true
         end
         if !updated
